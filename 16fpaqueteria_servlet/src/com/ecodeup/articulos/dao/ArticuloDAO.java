@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,13 @@ public class ArticuloDAO {
 	}
 
 	// insertar artículo
-	public boolean insertar(Articulo articulo) throws SQLException {
+	public boolean insertar(Articulo articulo) throws SQLException, ParseException {
+		
+//		@SuppressWarnings("deprecation")
+//		java.util.Date string=new java.util.Date("10/10/1999");
+//		java.sql.Date date2 = new java.sql.Date(string.getTime());
+		
+		
 		String sql = "INSERT INTO articulos (id, origen, destino, paquete, fecha, remitente, transportista, precio) VALUES (?, ?, ?,?,?,?,?,?)";
 		con.conectar();
 		connection = con.getJdbcConnection();

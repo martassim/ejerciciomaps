@@ -24,8 +24,8 @@
 		</tr>
 		<tr>
 			<td>fecha:</a></td>		
-			<td><input type="date" name="fecha" min="2018-03-25"
-                                  max="2018-05-25" step="2"></td>	
+			<td><input type="date" name="fecha"
+                                 step="2"></td>	
 			
 		</tr>
 		<tr>
@@ -36,6 +36,10 @@
 			<td>transportista:</a></td>		
 			<td><input type="text" name="transportista"/></td>	
 		</tr>		
+		<tr>
+			<td>precio:</a></td>		
+			<td><input type="text" name="precio"/></td>	
+		</tr>	
 		
 	</table>
 	<br>

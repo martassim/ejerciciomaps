@@ -2,11 +2,10 @@ package com.ecodeup.articulo.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.Format;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Formatter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -65,7 +64,7 @@ public class AdminArticulo extends HttpServlet {
 				nuevo(request, response);
 				break;
 			case "register":
-				System.out.println("entro");
+				System.out.println("llamando a register");
 				registrar(request, response);
 				break;
 			case "mostrar":
@@ -80,8 +79,8 @@ public class AdminArticulo extends HttpServlet {
 			case "eliminar":
 				eliminar(request, response);
 				break;
-			case "filtrar":
-				filtrar(request, response);
+			case "buscarporlocalidad":
+				buscarporlocalidad(request, response);
 				break;
 			default:
 				break;
@@ -118,21 +117,49 @@ public class AdminArticulo extends HttpServlet {
 	private void registrar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException, NumberFormatException, ParseException {
 		
+		System.out.println("insertando..");
+		
 		SimpleDateFormat Formatter = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date fecha =Formatter.parse(request.getParameter("fecha"));
+		java.sql.Date date2 = new java.sql.Date(fecha.getTime());
+		
+		System.out.println(fecha);
+		System.out.println(date2);
+//      java.util.Date fechaActual = new java.util.Date(); //Fecha actual del sistema
+	     
+		String origen =request.getParameter("origen");
+		String destino =request.getParameter("destino");
+		String paquete =request.getParameter("paquete");
+		String remitente =request.getParameter("remitente");
+		String transportista = request.getParameter("transportista");
+		double precio= Double.parseDouble(request.getParameter("precio"));
+		
 		Articulo articulo = new Articulo(0, 
-				request.getParameter("origen"),
-				request.getParameter("destino"),
-				request.getParameter("paquete"), 
-		        Formatter.parse(request.getParameter("fecha")),
-				request.getParameter("remitente"),
-				request.getParameter("transportista"),
-				Double.parseDouble(request.getParameter("precio")));
+				origen,
+				destino,
+				paquete, 
+		        date2,
+				remitente,
+				transportista,
+				precio);
+		
+		System.out.println(origen +destino +paquete +date2 +remitente +transportista +precio );
+
 		        articuloDAO.insertar(articulo);
+		        
+				System.out.println("insertado");
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
 	}
 
+	private Date parse(String parameter) {
+		return null;
+		}
+	
+	
+	
 	private void nuevo(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/register.jsp");
@@ -141,6 +168,7 @@ public class AdminArticulo extends HttpServlet {
 
 	private void mostrar(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
+		System.out.println("entramos en mostrar");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/mostrar.jsp");
 		List<Articulo> listaArticulos = articuloDAO.listarArticulos();
 		request.setAttribute("lista", listaArticulos);
@@ -166,7 +194,7 @@ public class AdminArticulo extends HttpServlet {
 //		index(request, response);
 //	}
 	
-	private void filtrar(HttpServletRequest request, HttpServletResponse response)
+	private void buscarporlocalidad(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/buscar.jsp");
 		dispatcher.forward(request, response);

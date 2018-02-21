@@ -13,10 +13,9 @@
 			<td align="center"><a href="adminArticulo?action=nuevo">llevame el paquete</a></td>			
 		</tr>
 		<tr>
-			<td align="center"><a href="adminArticulo?action=mostrar">te lo llevo</a></td>
 		</tr>
 		<tr>
-			<td align="center"><a href="adminArticulo?action=filtrar">filtrar</a></td>
+			<td align="center"><a href="adminArticulo?action=buscarporlocalidad">te lo llevo</a></td>
 		</tr>
 	</table>
 	

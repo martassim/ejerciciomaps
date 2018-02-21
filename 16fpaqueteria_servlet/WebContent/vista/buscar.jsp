@@ -73,10 +73,9 @@
         <br>
          <br>
 	<td>
-	<input type="button" value="Mostrar" name="mostrar" onclick="adminArticulo?action=mostrar"></td>	   
+	<input type="submit" type="submit" value="Submit""></td>	   
 	 </form>   
 	 
-<td align="center"><a href="adminArticulo?action=mostrar">te lo llevo</a></td>
 	  
 
 <!--     <div id="mode-selector" class="controls"> -->
